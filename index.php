@@ -40,14 +40,9 @@ echo $OUTPUT->header();
 
 if (isloggedin()) {
 
-    // echo '<h3>Greetings, ' . fullname($USER) . '</h3>';
-    // echo get_string('greetingloggedinuser', 'local_saludos', fullname($USER));
-
     echo local_greetings_get_greeting($USER);
 
 } else {
-
-    // echo '<h3>Saludos, usuario</h3>';
 
     echo get_string('greetinguser', 'local_saludos');
 

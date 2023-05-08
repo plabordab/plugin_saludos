@@ -27,7 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Saludos';
 
-// definición del idioma
 $string['greetinguser'] = 'Saludos, user.';
 $string['greetingloggedinuser'] = 'Saludos, {$a}.';
 
