@@ -15,23 +15,45 @@
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
- * Plugin strings are defined here.
+ * Este archivo contiene la pagina principal
  *
  * @package     local_saludos
- * @category    string
  * @copyright   2023 Pilar Laborda <pilarlabordadaw@gmail.com>
  * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+require_once('../../config.php');
+require_once($CFG->dirroot. '/local/saludos/lib.php');
 
-$string['pluginname'] = 'Saludos';
+$context = context_system::instance();
+$PAGE->set_context($context);
 
-// definición del idioma
-$string['greetinguser'] = 'Saludos, user.';
-$string['greetingloggedinuser'] = 'Saludos, {$a}.';
+$PAGE->set_url(new moodle_url('/local/saludos/index.php'));
 
-$string['greetinguserau'] = 'Hello, {$a}.';
-$string['greetinguseres'] = 'Hola, {$a}.';
-$string['greetinguserfj'] = 'Bula, {$a}.';
-$string['greetingusernz'] = 'Kia Ora, {$a}.';
+$PAGE->set_pagelayout('standard');
+
+$PAGE->set_title($SITE->fullname);
+
+$PAGE->set_heading(get_string('pluginname', 'local_saludos'));
+
+echo $OUTPUT->header();
+
+if (isloggedin()) {
+
+    // echo '<h3>Greetings, ' . fullname($USER) . '</h3>';
+    // echo get_string('greetingloggedinuser', 'local_saludos', fullname($USER));
+
+    echo local_greetings_get_greeting($USER);
+
+} else {
+
+    // echo '<h3>Saludos, usuario</h3>';
+
+    echo get_string('greetinguser', 'local_saludos');
+
+}
+
+
+echo $OUTPUT->footer();
+
+
