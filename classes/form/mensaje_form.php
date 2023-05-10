@@ -14,25 +14,29 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
+namespace local_saludos\form;
+defined('MOODLE_INTERNAL') || die();
+require_once($CFG->libdir . '/formslib.php');
+
 /**
- * Plugin strings are defined here.
+ * Clase que extiende de moodleform para añadir un formulario
  *
  * @package     local_saludos
- * @category    string
- * @copyright   2023 Pilar Laborda <pilarlabordadaw@gmail.com>
- * @license     https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+class mensaje_form extends \moodleform {
 
-defined('MOODLE_INTERNAL') || die();
+    /**
+     * Define the form.
+     */
+    public function definition() {
+        $mform = $this->_form;
 
-$string['pluginname'] = 'Saludos';
+        $mform->addElement('textarea', 'message', get_string('tumensaje', 'local_saludos'));
+        $mform->setType('message', PARAM_TEXT);
 
-$string['greetinguser'] = 'Saludos, user.';
-$string['greetingloggedinuser'] = 'Saludos, {$a}.';
+        $submitlabel = get_string('submit');
+        $mform->addElement('submit', 'submitmessage', $submitlabel);
 
-$string['greetinguserau'] = 'Hello, {$a}.';
-$string['greetinguseres'] = 'Hola, {$a}.';
-$string['greetinguserfj'] = 'Bula, {$a}.';
-$string['greetingusernz'] = 'Kia Ora, {$a}.';
+    }
+}
 
-$string['tumensaje'] = 'Tu mensaje';
