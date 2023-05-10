@@ -25,19 +25,29 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Saludos';
-
-$string['greetinguser'] = 'Saludos, user.';
-$string['greetingloggedinuser'] = 'Saludos, {$a}.';
-
-$string['greetinguserau'] = 'Hello, {$a}.';
-$string['greetinguseres'] = 'Hola, {$a}.';
-$string['greetinguserfj'] = 'Bula, {$a}.';
-$string['greetingusernz'] = 'Kia Ora, {$a}.';
-
-$string['tumensaje'] = 'Tu mensaje';
-$string['publicado'] = 'Publicado por {$a}.';
-
-$string['saludos:vermensajes'] = 'Ver mensajes en el muro de saludos';
-$string['saludos:publicarmensajes'] = 'Publicar un nuevo mensaje en el muro de saludos';
-$string['saludos:eliminarmensajes'] = 'Elimina un mensaje del muro de saludos';
+$capabilities = array(
+        'local/saludos:publicarmensajes' => array(
+                'riskbitmask' => RISK_SPAM,
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_SYSTEM,
+                'archetypes' => array(
+                        'user' => CAP_ALLOW,
+                )
+        ),
+        'local/saludos:vermensajes' => array(
+                'riskbitmask' => RISK_SPAM,
+                'captype' => 'read',
+                'contextlevel' => CONTEXT_SYSTEM,
+                'archetypes' => array(
+                        'user' => CAP_ALLOW,
+                )
+        ),
+        'local/saludos:eliminarmensajes' => array(
+                'riskbitmask' => RISK_SPAM,
+                'captype' => 'delete',
+                'contextlevel' => CONTEXT_SYSTEM,
+                'archetypes' => array(
+                        'user' => CAP_ALLOW,
+                )
+        ),
+);
