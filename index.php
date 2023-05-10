@@ -36,6 +36,11 @@ $PAGE->set_title($SITE->fullname);
 
 $PAGE->set_heading(get_string('pluginname', 'local_saludos'));
 
+require_login();
+if (isguestuser()) {
+    throw new moodle_exception('noguest');
+}
+
 $mensajeform = new \local_saludos\form\mensaje_form();
 echo $OUTPUT->header();
 

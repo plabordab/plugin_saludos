@@ -84,5 +84,10 @@ function local_saludos_extend_navigation(global_navigation $root) {
             new pix_icon('t/message', '')
     );
 
-    $root->add_node($node);
+    if (isguestuser()) {
+        throw new moodle_exception('noguest');
+    } else {
+        $root->add_node($node);
+    }
+
 }
