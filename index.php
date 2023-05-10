@@ -50,10 +50,38 @@ if (isloggedin()) {
 }
 
 $mensajeform->display();
+
+$mensajes = $DB->get_records('local_saludos_mensajes');
+
+echo $OUTPUT->box_start('card-columns');
+
+foreach ($mensajes as $m) {
+    echo html_writer::start_tag('div', array('class' => 'card'));
+    echo html_writer::start_tag('div', array('class' => 'card-body'));
+    echo html_writer::tag('p', $m->mensaje, array('class' => 'card-text'));
+    echo html_writer::start_tag('p', array('class' => 'card-text'));
+    echo html_writer::tag('small', userdate($m->timecreated), array('class' => 'text-muted'));
+    echo html_writer::end_tag('p');
+    echo html_writer::end_tag('div');
+    echo html_writer::end_tag('div');
+}
+
+echo $OUTPUT->box_end();
+
+
 if ($data = $mensajeform->get_data()) {
     $mensaje = required_param('message', PARAM_TEXT);
-    echo $OUTPUT->heading($mensaje, 4);
+
+    if (!empty($mensaje)) {
+        $registro = new stdClass;
+        $registro->mensaje = $mensaje;
+        $registro->timecreated = time();
+
+        $DB->insert_record('local_saludos_mensajes', $registro);
+    }
 }
+
+
 echo $OUTPUT->footer();
 
 
