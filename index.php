@@ -49,11 +49,13 @@ $action = optional_param('action', '', PARAM_TEXT);
 
 
 if ($action == 'del') {
+    require_sesskey();
     $id = required_param('id', PARAM_TEXT);
 
     if ($deleteanypost) {
         $params = array('id' => $id);
         $DB->delete_records('local_saludos_mensajes', $params);
+        redirect($PAGE->url);
     }
 }
 
@@ -100,7 +102,7 @@ if ($allowview) {
             echo html_writer::link(
                     new moodle_url(
                             '/local/saludos/index.php',
-                            array('action' => 'del', 'id' => $m->id)
+                            array('action' => 'del', 'id' => $m->id, 'sesskey' => sesskey())
                     ),
                     $OUTPUT->pix_icon('t/delete', '') . get_string('delete')
             );
