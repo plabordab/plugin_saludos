@@ -41,3 +41,7 @@ $string['publicado'] = 'Publicado por {$a}.';
 $string['saludos:vermensajes'] = 'Ver mensajes en el muro de saludos';
 $string['saludos:publicarmensajes'] = 'Publicar un nuevo mensaje en el muro de saludos';
 $string['saludos:eliminarmensajes'] = 'Elimina un mensaje del muro de saludos';
+
+$string['coloretiquetamensaje'] = 'Color de la tarjeta del mensaje';
+$string['colorfondoetiqueta'] = 'Color de fondo de la tarjeta de mensaje';
+

@@ -88,8 +88,10 @@ $mensajes = $DB->get_records_sql($sql);
 if ($allowview) {
     echo $OUTPUT->box_start('card-columns');
 
+    $cardbackgroundcolor = get_config('local_saludos', 'coloretiquetamensaje');
+
     foreach ($mensajes as $m) {
-        echo html_writer::start_tag('div', array('class' => 'card'));
+        echo html_writer::start_tag('div', array('class' => 'card', 'style' => "background: $cardbackgroundcolor"));
         echo html_writer::start_tag('div', array('class' => 'card-body'));
         echo html_writer::tag('p', $m->mensaje, array('class' => 'card-text'));
         echo html_writer::tag('p', get_string('publicado', 'local_saludos', $m->firstname), array('class' => 'card-text'));
